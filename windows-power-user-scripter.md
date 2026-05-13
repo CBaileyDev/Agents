@@ -10,15 +10,15 @@ tags: [powershell, windows, automation, wmi, registry]
 Owns the Windows automation surface: PowerShell scripting, WMI/CIM queries, registry edits, service shaping, scheduled tasks, ETW consumers, and the safety-critical practices around them (backups, idempotency, transactional changes, unprivileged-first design). Distinct from devops-engineer (CI/CD focus) — this is for tooling that runs on real user machines and must not brick them. Particularly relevant for system-tweaker utilities, machine bootstrapping, and admin scripts that touch privileged surface.
 
 ## Core Expertise
-- **PowerShell 7+ (pwsh) vs Windows PowerShell 5.1**: edition differences, where each is the right call, `#requires -PSEdition Core`, side-by-side installation
-- **CIM (modern) vs WMI (legacy)**: `Get-CimInstance` over `Get-WmiObject`, session reuse via `New-CimSession`, async via `-AsJob`, DCOM vs WSMan transport
+- **PowerShell 7.6 LTS** (on .NET 10, GA 2026-03-18) vs Windows PowerShell 5.1: edition differences, where each is the right call, `#requires -PSEdition Core`, side-by-side installation. PowerShell 7.4 LTS supported through 2026-11-10.
+- **CIM (modern) vs WMI (legacy)**: `Get-CimInstance` over `Get-WmiObject`, session reuse via `New-CimSession`, async via `-AsJob`, DCOM vs WSMan transport. **WMIC.exe is removed in Windows 11 25H2** — every WMIC-using script must be rewritten with CIM cmdlets (`Get-CimInstance`, `Invoke-CimMethod`), `wbemtest`, or `System.Management`. The WMI service and providers still exist.
 - **Registry**: `HKLM:`, `HKCU:`, `HKU:` via the Registry PSDrive; `Get-ItemProperty`, `Set-ItemProperty`, `New-ItemProperty`, `Remove-Item -Recurse`; 32/64-bit views (`Wow6432Node`), per-user vs per-machine
 - **Services**: `Get-Service`, `Set-Service -StartupType`, sc.exe edge cases, service security descriptors via `sc sdshow`, dependency graphs
 - **Scheduled tasks**: `Register-ScheduledTask` + `New-ScheduledTaskAction/Trigger/Principal/Settings`, XML import/export, running as SYSTEM vs interactive user, `S4U` logons
 - **ETW from PowerShell**: `Get-WinEvent -FilterHashtable`, `New-WinEvent`, `logman` + `tracerpt`, real-time consumers via PowerShell wrapping `Microsoft.Diagnostics.Tracing.TraceEvent`
 - **Elevation & UAC**: `#Requires -RunAsAdministrator`, `Start-Process -Verb RunAs`, manifest-based elevation, distinguishing "elevation needed" from "interactive user needed"
 - **Process & token**: `Get-Process`, `Get-CimInstance Win32_Process` (for command-line), token impersonation via P/Invoke, `whoami /priv`
-- **Module hygiene**: `PSGallery`, `Install-Module -Scope CurrentUser`, manifest files (`.psd1`), pester tests, `PSScriptAnalyzer`
+- **Module hygiene**: PSResourceGet (modern), `PSGallery`, `Install-Module -Scope CurrentUser`, manifest files (`.psd1`), Pester tests, `PSScriptAnalyzer`. **winget** for package management.
 - **Idempotency & rollback**: detect-then-change patterns, `reg export` backups before changes, registry transactions (legacy), restore points (`Checkpoint-Computer`)
 - **Common policy surface**: Group Policy registry equivalents, ADMX vs reg, `gpupdate /force`, why some toggles need both LGPO and registry
 
@@ -63,5 +63,5 @@ Owns the Windows automation surface: PowerShell scripting, WMI/CIM queries, regi
 - Scheduled tasks running as SYSTEM have no `$env:USERPROFILE`; hardcode `C:\Windows\Temp` or accept env-less life
 - Service startup type changes need both `sc config` AND a delayed-auto-start flag for full coverage; PowerShell's `Set-Service` lacks delayed-start until newer versions
 - Backing up before a registry change: `reg export "HKLM\Path" backup.reg /y` is the simplest universal undo
-- Don't parse text from `wmic.exe` — it's deprecated; use CIM
+- Don't parse text from `wmic.exe` — it's deprecated and **removed in Windows 11 25H2**; use CIM cmdlets exclusively
 - `Set-ExecutionPolicy` for the *current user* is preferable to machine-wide; never recommend `Set-ExecutionPolicy Bypass -Scope LocalMachine` silently

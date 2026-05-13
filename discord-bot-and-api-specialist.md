@@ -15,14 +15,15 @@ Owns Discord-specific development: Gateway WebSocket lifecycle, REST API quirks 
 - **REST API**: per-route rate limits via `X-RateLimit-Bucket`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`, global 50req/s, retry-after on 429, sub-route bucket hashing (the same endpoint with different params can be different buckets)
 - **Application Commands**: global vs guild commands (global = 1h propagation, guild = instant), command versioning, autocomplete handlers, command permissions v2 (per-role/user/channel), localization fields
 - **Interactions**: `interaction_token` valid for 15 min, initial response within 3s (or defer), `followup` after defer, 5-second response limit on autocomplete, ephemeral flag
-- **Message components**: buttons, select menus (string/user/role/channel/mentionable), modals (1–5 text inputs), custom_id design (encode state into custom_id since callbacks don't carry context)
+- **Message components**: buttons, select menus (string/user/role/channel/mentionable), modals (1–5 text inputs), custom_id design (encode state into custom_id since callbacks don't carry context). **Components V2** is production: opt in with message flag `IS_COMPONENTS_V2 (1 << 15)`; once set the message cannot carry `content` or `embeds`. Modal text inputs must be wrapped in `Label` components (the bare-input form deprecated Sep 2025)
 - **Embeds**: limits (6000 chars total, 25 fields, 256-char field name, 1024-char field value, 4096-char description), embed array per message capped
 - **OAuth2**: authorization code flow with PKCE, `bot` + `applications.commands` scopes for bot installs, `identify` / `email` for user auth, refresh token rotation, RPC scope for desktop integration
 - **Voice gateway** (when relevant): separate WebSocket, UDP voice connection, Opus encoding requirement, voice receive limitations
 - **Libraries**:
-  - **discord.py** (2.x) — Python, `Client`/`Bot`/`commands.Bot`, `@bot.tree.command()`, `app_commands.CommandTree`, `Intents.default()`, `setup_hook` for async init
-  - **Discord.Net** — C#, `DiscordSocketClient`, `InteractionService`, slash-command modules, dependency injection
-  - **discord.js** — TS/JS, `Client` with intents flags, `SlashCommandBuilder`, REST helper for command registration
+  - **discord.py** (2.7.x line, March 2026, Python ≥ 3.8) — `Client`/`Bot`/`commands.Bot`, `@bot.tree.command()`, `app_commands.CommandTree`, `Intents.default()`, `setup_hook` for async init
+  - **Discord.Net** (.NET 8+) — `DiscordSocketClient`, `InteractionService`, slash-command modules, dependency injection
+  - **discord.js** (14.26.x) — TS/JS, `Client` with intents flags, `SlashCommandBuilder`, REST helper for command registration. DAVE voice protocol support is now in current releases
+- **Permission churn**: `default_permission` is deprecated — use Application Command Permissions v2. `PIN_MESSAGES` becomes a required permission 2026-02-23; check the change-log when granting or auditing roles
 - **Rate limit handling**: respect `Retry-After`, queue per-bucket, never burst — Discord 429s aggressively and cumulative limits cascade
 
 ## Signature Workflows
