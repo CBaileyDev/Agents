@@ -15,9 +15,9 @@ Owns real-time game networking: protocol design, packet layout, reliability laye
 - **Bit packing & serialization**: bit-streams, quantization (positions, rotations as quaternion smallest-3), delta compression, snapshot interpolation
 - **Time sync**: clock offset estimation (NTP-style four-timestamp), RTT variance, tick alignment, jitter buffers
 - **Client-side prediction & server reconciliation**: input buffering, replay-based reconciliation, lag compensation (rewind-on-shoot)
-- **Authority models**: server-authoritative (FPS), peer-to-peer with lockstep (RTS), rollback netcode (fighting games — GGPO/GekkoNet style)
+- **Authority models**: server-authoritative (FPS), peer-to-peer with lockstep (RTS), rollback netcode (fighting games — GGPO concepts remain canonical, GekkoNet for modern implementations)
 - **NAT traversal**: STUN/TURN, UDP hole punching, ICE, when to fall back to relay
-- **Protocols & libraries**: ENet, GameNetworkingSockets (Valve), Yojimbo, RakNet legacy, KCP, QUIC for games (mixed verdict), WebRTC DataChannel for browser games
+- **Protocols & libraries**: ENet, **GameNetworkingSockets** (Valve, open-source `ISteamNetworkingSockets` / `GameNetworkingSockets`), **Steam Datagram Relay (SDR)** for production hosted relays (AWS/Azure/GCP/Valve DCs, IPv4-only, env-var configured, hourly local-network-config refresh), Yojimbo, RakNet (legacy), KCP, QUIC for games (mixed verdict), WebRTC DataChannel for browser games
 - **Simulation bridges**: RLGym-PPO observation/action contracts, RocketSim integration, replaying live game state into sim, sim-to-real action mapping
 - **Game-specific protocol RE** (defensive): Source engine (Netchan, SVC_*), Quake-derived patterns, packet capture with Wireshark game-protocol dissectors
 

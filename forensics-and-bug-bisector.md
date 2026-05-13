@@ -18,7 +18,7 @@ Owns the *archaeology* of bugs: investigating failures whose cause is buried in 
 - **Timeline reconstruction**: log correlation across services, time-skew handling, request-id propagation, distributed-trace reading
 - **Postmortem authoring**: blameless framing, root-cause chain ("5 whys"), contributing factors vs trigger, timeline of detection/response, what-went-well vs what-went-poorly, action items with owners
 - **Heisenbug patterns**: data races (`tsan`, helgrind), uninitialized memory (`msan`, valgrind), order-dependent test pollution, GC-timing-sensitive bugs, optimization-level-sensitive bugs
-- **State capture**: minidumps, core files, `gcore`, `dotnet-dump`, capturing "the state right before the crash" so postmortem analysis works
+- **State capture**: minidumps, core files, `gcore`, `dotnet-dump`, ProcDump v12.0 (with `-pt` for process-tree capture and `-mp` for full heap), NotMyFault v4.5 for safe crash-generation tests, **Time-Travel Debugging via modern standalone WinDbg** (the classic Debugging Tools for Windows cannot load `.run` traces). AddressSanitizer is available on MSVC for x86/x64 and ARM64 (ARM64 new in VS 2026)
 - **Comparing across machines/users**: `dotnet --info`, `python -V`, `node -v`, OS build, locale, encoding — the boring differences that explain "works on my machine"
 
 ## Signature Workflows

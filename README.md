@@ -1,6 +1,15 @@
 # Agent Specialists
 
-A comprehensive collection of specialized AI agent prompts for various domains, technologies, and software engineering disciplines. Each agent is designed with deep domain expertise, specific collaboration patterns, and actionable workflows.
+A comprehensive collection of specialized AI agent prompts for various domains, technologies, and software engineering disciplines. Each agent is designed with deep domain expertise, specific collaboration patterns, and actionable workflows. See [CHANGELOG.md](CHANGELOG.md) for revision history.
+
+## Templates and Conventions
+
+The collection uses two intentional templates:
+
+- **Core team (8-section, 15 agents + `team-protocol.md`)** — always-on, body-format agents that establish the collaboration protocol. Sections: Identity & Role → Core Expertise & Mindset → Primary Responsibilities → Detailed Workflow / Reasoning Process → Collaboration Rules → Output Format → Quality Guardrails & Self-Critique → Tools & Capabilities.
+- **Specialists (YAML-frontmatter, 28 agents)** — on-demand experts dispatched by `description` field. Sections: Role → Core Expertise → Signature Workflows → Boundaries → Collaboration → Example Invocations → Notes & Gotchas.
+
+`team-protocol.md` is the shared operating contract. It now codifies the AGENTS.md/CLAUDE.md convention (cross-editor — read by Cursor, GitHub Copilot Coding Agent, OpenAI Codex CLI, and Claude Code), the verify-before-finish hierarchy (rules-based > visual > LLM-judge), the tool-failure recovery contract, an anti-confirmation-bias clause for review/audit roles, defensive-only scope for the relevant agents, and portability rules (Markdown-first structure, no "think step by step", no superlative directives).
 
 ## 📚 Overview
 
