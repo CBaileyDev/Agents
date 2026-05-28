@@ -2,6 +2,19 @@
 
 All dates are 2026 unless otherwise noted. URLs are access-date 2026-05-13.
 
+## 2026-05-28 — AI Utopia RL village specialist pack
+
+Added six specialists targeting the AI Utopia project's domain (reinforcement-learning multi-agent Minecraft village). All six follow the existing YAML-frontmatter specialist template. Agent count: 43 → 49.
+
+- `minecraft-rl-environment-specialist.md` — environment layer. MineRL, MineDojo, Project Malmo, Minetest/Craftium, Mineflayer; obs/action design; headless server orchestration; deterministic seeding and reset; train-vs-deploy parity.
+- `multi-agent-rl-specialist.md` — PettingZoo / RLlib / MARLLib / JaxMARL, MAPPO / QMIX / COMA / IPPO, CTDE critic design, credit assignment, parameter-sharing strategies, self-play and league play, emergent communication channels.
+- `deep-rl-training-specialist.md` — generalist RL replacement for the Rocket-League-specific `rlgym-ppo-deployment-specialist`. PPO, IMPALA, DreamerV3, Sample Factory; sparse-reward exploration (RND, ICM, NGU, Go-Explore); curriculum; distributed rollouts; diagnostics for entropy collapse, value-loss divergence, KL pathology.
+- `minecraft-modding-and-server-specialist.md` — server side. Fabric / NeoForge mods, Paper / Spigot / Folia plugins, datapacks, NBT/SNBT, RCON, snapshot/restore reset patterns, Aikar-style JVM tuning, Mineflayer integration.
+- `agent-behavior-architecture-specialist.md` — the planner layer above raw RL. Behavior trees, GOAP, HTN, hierarchical RL with options, LLM-as-planner (Voyager-style) for villager goal hierarchies (gather/craft/build/trade/socialize); skill libraries; memory and re-planning semantics.
+- `reward-design-and-imitation-learning-specialist.md` — reward shaping discipline (potential-based, decay schedules); behavior cloning, DAgger, GAIL/AIRL, IQ-Learn; preference learning (RLHF, DPO); VLM-as-reward (MineCLIP); VPT-style demo pretrain; reward-hacking and Goodharting defenses.
+
+Updated `README.md`: agent count 43 → 49, new "Reinforcement Learning & Minecraft" section, refreshed footer counts and domain list.
+
 ## 2026-05-13 — Independent audit pass
 
 Goals: portability across Claude Code / OpenAI Codex / GitHub Copilot / Cursor / Kimi / Gemini CLI; 2026 currency; failure-mode hardening (anti-confirmation-bias for review roles, tool-failure recovery contract, verify hierarchy); preserved defensive-only scope on RE/internals/anti-tamper agents; preserved two-template split (8-section core team vs YAML-frontmatter specialists).
