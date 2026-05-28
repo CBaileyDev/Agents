@@ -13,11 +13,12 @@ The collection uses two intentional templates:
 
 ## 📚 Overview
 
-This repository contains 43 specialized agents organized by domain:
+This repository contains 49 specialized agents organized by domain:
 
 - **Programming Languages** — Python, Rust, Go, TypeScript/Node.js, C++, C#/.NET, Java/Kotlin
 - **Web & API** — ASP.NET Core Minimal APIs, Discord Bot/API, Frontend Design, React Desktop
 - **Data & ML** — Data Science/Numerics, LLM Application Building, Python inference
+- **Reinforcement Learning & Minecraft** — Deep RL Training, Multi-Agent RL, Reward Design & Imitation, Minecraft RL Environment, Minecraft Modding & Server, Agent Behavior Architecture
 - **Game Development** — Engine Internals, Networking, Security, Anti-Cheat
 - **Systems & Infrastructure** — DevOps, Windows Internals, Performance Profiling, Memory Dumps
 - **Security & Review** — Security Reviewer, Threat Modeling, Forensics
@@ -82,6 +83,28 @@ Use for C++ inference with PyTorch's libtorch — loading TorchScript / ONNX mod
 
 ### RLGym PPO Deployment Specialist
 Use for Rocket League RL bot work — RLGym v2 architecture, rlgym-ppo training, RocketSim integration, observation/action contracts, and the train-to-deploy boundary.
+
+---
+
+## 🧠 Reinforcement Learning & Minecraft
+
+### Deep RL Training Specialist
+Use for general-purpose deep RL — PPO, IMPALA, DreamerV3, Sample Factory, SB3, sparse-reward strategies (RND/ICM/NGU), curriculum learning, distributed rollouts, and training-dynamics diagnosis. Domain-agnostic; pair with the Minecraft env specialist for AI Utopia work.
+
+### Multi-Agent RL Specialist
+Use for MARL — PettingZoo / RLlib / MARLLib / JaxMARL, MAPPO/QMIX/COMA/IPPO, centralized-training-decentralized-execution, credit assignment, self-play and league play, emergent communication. Critical for villager populations.
+
+### Reward Design & Imitation Learning Specialist
+Use for reward shaping discipline, behavior cloning, DAgger, GAIL/AIRL, RLHF/DPO, MineCLIP-as-reward, and the BASALT/VPT recipes that make sparse-reward Minecraft tasks tractable.
+
+### Minecraft RL Environment Specialist
+Use for the environment layer — MineRL, MineDojo, Project Malmo, Minetest/Craftium, Mineflayer, observation/action design, headless server orchestration, deterministic seeding and reset semantics, train-vs-deploy parity.
+
+### Minecraft Modding & Server Specialist
+Use for the server side — Fabric/NeoForge mods, Paper/Spigot/Folia plugins, datapacks, NBT, RCON, world manipulation, snapshot/restore reset patterns, and the protocol bridge between Python and a real Minecraft world.
+
+### Agent Behavior Architecture Specialist
+Use for the planner layer above raw RL — behavior trees, GOAP, HTN, hierarchical RL with options, and LLM-as-planner patterns (Voyager-style) for villagers with goal hierarchies: gather, craft, build, trade, socialize.
 
 ---
 
@@ -230,5 +253,5 @@ Example: A web API task might start with aspnet-minimal-api-specialist, escalate
 ---
 
 **Last Updated:** May 2026  
-**Agent Count:** 43  
-**Domains Covered:** Programming Languages, Web APIs, Game Development, Systems, Security, Data Science, AI/LLM, Desktop UI, Engineering Discipline
+**Agent Count:** 49  
+**Domains Covered:** Programming Languages, Web APIs, Game Development, Reinforcement Learning, Minecraft, Systems, Security, Data Science, AI/LLM, Desktop UI, Engineering Discipline
