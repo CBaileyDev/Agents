@@ -9,6 +9,20 @@ The collection uses two intentional templates:
 - **Core team (8-section, 15 agents + `team-protocol.md`)** — always-on, body-format agents that establish the collaboration protocol. Sections: Identity & Role → Core Expertise & Mindset → Primary Responsibilities → Detailed Workflow / Reasoning Process → Collaboration Rules → Output Format → Quality Guardrails & Self-Critique → Tools & Capabilities.
 - **Specialists (YAML-frontmatter, 28 agents)** — on-demand experts dispatched by `description` field. Sections: Role → Core Expertise → Signature Workflows → Boundaries → Collaboration → Example Invocations → Notes & Gotchas.
 
+## 🧩 Plugins
+
+Installable Claude Code plugins live under `plugins/` and are listed in the repo-root marketplace (`.claude-plugin/marketplace.json`).
+
+| Plugin | What it adds |
+|---|---|
+| [`ux-reasoning`](plugins/ux-reasoning/README.md) | UI/UX design reasoning: 11 knowledge skills (intent, hierarchy, states, forms, feedback, motion, accessibility, responsive, visual direction, design system, heuristics), 4 workflow commands (`ux-design`, `ux-audit`, `ux-review`, `restyle`), 2 subagents (`ux-auditor`, `ux-visual-verifier`), a session hook that routes UI work to the right skill, a Playwright capture script, and a with/without-plugin eval suite |
+
+```text
+/plugin install ux-reasoning --marketplace CBaileyDev/Agents
+```
+
+On Claude Code older than 2.1.275, add the marketplace first: `/plugin marketplace add CBaileyDev/Agents`, then `/plugin install ux-reasoning@cbaileydev`. The skills also work in other `SKILL.md`-compatible agents (Codex, Cursor) — see the plugin README.
+
 `team-protocol.md` is the shared operating contract. It now codifies the AGENTS.md/CLAUDE.md convention (cross-editor — read by Cursor, GitHub Copilot Coding Agent, OpenAI Codex CLI, and Claude Code), the verify-before-finish hierarchy (rules-based > visual > LLM-judge), the tool-failure recovery contract, an anti-confirmation-bias clause for review/audit roles, defensive-only scope for the relevant agents, and portability rules (Markdown-first structure, no "think step by step", no superlative directives).
 
 ## 📚 Overview
@@ -232,6 +246,9 @@ Use for project planning, task breakdown, milestone tracking, and keeping comple
 ├── [domain]-specialist.md            # Domain specialists (networking, security, etc.)
 ├── [role]-[discipline].md            # Engineering discipline roles
 ├── team-protocol.md                  # Guidelines for multi-agent collaboration
+├── .claude-plugin/marketplace.json   # Claude Code plugin marketplace for this repo
+├── plugins/
+│   └── ux-reasoning/                 # UI/UX reasoning plugin (skills, commands, agents, evals)
 ├── docs/
 │   ├── README.md                     # Documentation overview
 │   ├── DESIGN_PRINCIPLES.md          # Design philosophy

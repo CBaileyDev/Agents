@@ -1,0 +1,10 @@
+{
+  "name": "ux-reasoning",
+  "version": "0.1.0",
+  "description": "UI/UX design reasoning for coding agents: decide intent, hierarchy, states, feedback, motion, accessibility, responsive behavior, and visual direction before rendering, then audit the result.",
+  "author": {
+    "name": "CBaileyDev"
+  },
+  "repository": "https://github.com/CBaileyDev/agents",
+  "keywords": ["ux", "ui", "design", "accessibility", "motion", "design-system", "frontend", "audit"]
+}

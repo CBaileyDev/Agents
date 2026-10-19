@@ -2,6 +2,19 @@
 
 All dates are 2026 unless otherwise noted. URLs are access-date 2026-05-13.
 
+## 2026-10-19 — `ux-reasoning` plugin
+
+Added the repo's first installable Claude Code plugin, plus a repo-root marketplace (`.claude-plugin/marketplace.json`, marketplace name `cbaileydev`). Agent count unchanged (49); the plugin's subagents live inside the plugin.
+
+- `plugins/ux-reasoning/skills/` — 11 knowledge skills: `ux-intent`, `ux-hierarchy`, `ux-states`, `ux-forms`, `ux-feedback`, `ux-motion`, `ux-accessibility`, `ux-responsive`, `ux-visual-direction`, `ux-design-system`, `ux-heuristics`. Reference files: motion recipes (CSS `@starting-style`, View Transitions, Motion, GSAP `matchMedia`), a WCAG 2.2 A/AA checklist, a `DESIGN.md` template, and an audit report template.
+- 4 user-invoked workflow skills (`disable-model-invocation: true`): `ux-design`, `ux-audit`, `ux-review`, `restyle`.
+- `agents/ux-auditor.md` (read-only reviewer, preloads 8 skills) and `agents/ux-visual-verifier.md` (renders the app and reports).
+- `hooks/hooks.json` — `SessionStart` hook that injects a short skill-routing note; without it, evals showed the knowledge skills were not loaded on one-shot UI prompts.
+- `scripts/ux-capture.mjs` — Playwright capture at multiple widths and themes with rules-based signals and optional axe-core scan.
+- `evals/` — seven everyday UI prompts with regex and rubric graders for `claude plugin eval`, which compares runs with and without the plugin. First recorded run (2 runs per arm): mean score 1.00 with the plugin vs 0.67 without; largest gains on destructive-action safeguards, save feedback, and empty/error states.
+- Portability: skills use the standard `SKILL.md` format and follow `team-protocol.md`'s portability rules; subagents and `${CLAUDE_PLUGIN_ROOT}` are Claude Code-specific.
+- Sources: https://www.w3.org/TR/WCAG22/, https://www.w3.org/WAI/ARIA/apg/, https://www.nngroup.com/articles/ten-usability-heuristics/, https://design-system.service.gov.uk/, https://developer.mozilla.org/, https://motion.dev/docs, https://gsap.com/docs/, https://code.claude.com/docs/en/plugin-evals.
+
 ## 2026-05-28 — AI Utopia RL village specialist pack
 
 Added six specialists targeting the AI Utopia project's domain (reinforcement-learning multi-agent Minecraft village). All six follow the existing YAML-frontmatter specialist template. Agent count: 43 → 49.
