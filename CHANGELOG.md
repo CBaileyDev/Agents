@@ -11,7 +11,7 @@ Added the repo's first installable Claude Code plugin, plus a repo-root marketpl
 - `agents/ux-auditor.md` (read-only reviewer, preloads 8 skills) and `agents/ux-visual-verifier.md` (renders the app and reports).
 - `hooks/hooks.json` — `SessionStart` hook that injects a short skill-routing note; without it, evals showed the knowledge skills were not loaded on one-shot UI prompts.
 - `scripts/ux-capture.mjs` — Playwright capture at multiple widths and themes with rules-based signals and optional axe-core scan.
-- `evals/` — seven everyday UI prompts with regex and rubric graders for `claude plugin eval`, which compares runs with and without the plugin.
+- `evals/` — seven everyday UI prompts with regex and rubric graders for `claude plugin eval`, which compares runs with and without the plugin. First recorded run (2 runs per arm): mean score 1.00 with the plugin vs 0.67 without; largest gains on destructive-action safeguards, save feedback, and empty/error states.
 - Portability: skills use the standard `SKILL.md` format and follow `team-protocol.md`'s portability rules; subagents and `${CLAUDE_PLUGIN_ROOT}` are Claude Code-specific.
 - Sources: https://www.w3.org/TR/WCAG22/, https://www.w3.org/WAI/ARIA/apg/, https://www.nngroup.com/articles/ten-usability-heuristics/, https://design-system.service.gov.uk/, https://developer.mozilla.org/, https://motion.dev/docs, https://gsap.com/docs/, https://code.claude.com/docs/en/plugin-evals.
 

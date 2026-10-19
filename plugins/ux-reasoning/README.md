@@ -40,7 +40,7 @@ Plain Markdown skills in the standard `SKILL.md` format, plus Claude Code comman
 
 ### Session hook
 
-[`hooks/hooks.json`](hooks/hooks.json) runs at session start and adds a ten-line routing note ([`hooks/session-context.md`](hooks/session-context.md)) telling Claude which skill to load for which kind of UI work. Without it, Claude often answers one-shot UI prompts directly and never loads the skill bodies — in this plugin's evals, no skill fired in any of the seven cases before the hook was added, and a skill fired in each of the four cases re-run after it. Delete the hook if you prefer to rely on skill descriptions alone.
+[`hooks/hooks.json`](hooks/hooks.json) runs at session start and adds a ten-line routing note ([`hooks/session-context.md`](hooks/session-context.md)) telling Claude which skill to load for which kind of UI work. Without it, Claude often answers one-shot UI prompts directly and never loads the skill bodies — in this plugin's evals, no skill fired in any of the seven cases before the hook was added, and a skill fired in all 14 runs after it. Delete the hook if you prefer to rely on skill descriptions alone.
 
 ### Capture script
 
@@ -97,6 +97,21 @@ claude plugin eval . --runs 3 -j 4 --threshold 0.8 --no-publish
 ```
 
 That is 7 cases × 3 runs × 2 arms = 42 agent runs plus judge calls; use `--runs 1` or `--case <name>` for a cheaper pass, and `--max-cost-usd` to cap spend. Results land in `evals/results/<timestamp>/` (git-ignored) with `report.html` showing WITH, W/OUT, and Δ per case. Each case also reports whether a `ux-*` skill fired (an indicator, not scored).
+
+### Results (2026-10-19, Claude Code 2.1.303, 2 runs per arm, default models, about $2 total)
+
+| Case | With plugin | Without | Δ | What the baseline missed |
+|---|---|---|---|---|
+| delete-account | 1.00 | 0.25 | +0.75 | Used `window.confirm()`; no type-to-confirm or permanence warning |
+| settings-save | 1.00 | 0.33 | +0.67 | Missing pending state, success announcement, or failure message |
+| user-list | 1.00 | 0.33 | +0.67 | Missing a distinct empty state or a retry on error |
+| comparison-table | 1.00 | 0.75 | +0.25 | One run had no phone-width strategy |
+| animated-modal | 1.00 | 1.00 | 0 | — |
+| icon-toolbar | 1.00 | 1.00 | 0 | — |
+| signup-form | 1.00 | 1.00 | 0 | — |
+| **Mean** | **1.00** | **0.67** | **+0.33** | |
+
+A skill fired in all 14 with-plugin runs. Two runs per arm is a small sample and the graders are the plugin author's, so treat this as a regression baseline rather than proof; rerun with `--runs 3` or more after changing skills. Before the session hook was added, a one-run pass scored 0.90 with vs 0.77 without, and no skill fired in any case.
 
 ## Sources
 
