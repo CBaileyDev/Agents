@@ -1,0 +1,14 @@
+{
+  "name": "cbaileydev",
+  "description": "Claude Code plugins from the CBaileyDev Agents collection.",
+  "owner": {
+    "name": "CBaileyDev"
+  },
+  "plugins": [
+    {
+      "name": "ux-reasoning",
+      "source": "./plugins/ux-reasoning",
+      "description": "UI/UX design reasoning for coding agents: 11 knowledge skills, 4 workflow commands, and 2 review subagents that make the agent decide intent, hierarchy, states, feedback, motion, accessibility, and visual direction before it renders."
+    }
+  ]
+}
